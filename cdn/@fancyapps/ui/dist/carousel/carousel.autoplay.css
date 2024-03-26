@@ -1,0 +1,3 @@
+/* build time:Tue Mar 26 2024 09:54:57 GMT+0000 (Coordinated Universal Time)*/
+.f-progress{position:absolute;top:0;left:0;right:0;height:3px;transform:scaleX(0);transform-origin:0;transition-property:transform;transition-timing-function:linear;background:var(--f-progress-color,var(--f-carousel-theme-color,#0091ff));z-index:30;user-select:none;pointer-events:none}
+/* rebuild by neat */
