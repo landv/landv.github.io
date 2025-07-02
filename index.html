@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found</title>
+    <title>Will You Marry Me? | 你愿意嫁给我吗？</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
@@ -11,14 +11,48 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3B82F6',
-                        secondary: '#10B981',
-                        dark: '#1E293B',
-                        light: '#F8FAFC'
+                        primary: '#E94057',
+                        secondary: '#8A2387',
+                        accent: '#FFC8DD',
+                        light: '#FFF0F3',
+                        dark: '#590D22'
                     },
                     fontFamily: {
-                        inter: ['Inter', 'sans-serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['"Ma Shan Zheng"', 'cursive']
                     },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'heartbeat': 'heartbeat 1.5s ease-in-out infinite',
+                        'fade-in': 'fadeIn 1s ease-in forwards',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                        'scale': 'scale 0.5s ease-out forwards'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        heartbeat: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '14%': { transform: 'scale(1.1)' },
+                            '28%': { transform: 'scale(1)' },
+                            '42%': { transform: 'scale(1.1)' },
+                            '70%': { transform: 'scale(1)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        scale: {
+                            '0%': { transform: 'scale(0.8)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        }
+                    }
                 }
             }
         }
@@ -29,81 +63,263 @@
                 content-visibility: auto;
             }
             .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .text-shadow-lg {
                 text-shadow: 0 4px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
             }
-            .animate-float {
-                animation: float 6s ease-in-out infinite;
+            .bg-blur {
+                backdrop-filter: blur(8px);
             }
-            .animate-pulse-slow {
-                animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            .heart {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                background-color: #E94057;
+                transform: rotate(45deg);
+                animation: floatHeart 6s ease-in-out infinite;
+                opacity: 0.7;
             }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+            .heart:before, .heart:after {
+                content: '';
+                width: 20px;
+                height: 20px;
+                background-color: #E94057;
+                border-radius: 50%;
+                position: absolute;
+            }
+            .heart:before {
+                top: -10px;
+                left: 0;
+            }
+            .heart:after {
+                top: 0;
+                left: -10px;
+            }
+            @keyframes floatHeart {
+                0% { transform: rotate(45deg) translateY(0) translateX(0); opacity: 0.7; }
+                50% { transform: rotate(45deg) translateY(-20px) translateX(10px); opacity: 0.9; }
+                100% { transform: rotate(45deg) translateY(0) translateX(0); opacity: 0.7; }
+            }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gradient-to-br from-light to-gray-100 min-h-screen font-inter text-dark flex flex-col items-center justify-center p-4">
-    <!-- 页面内容 -->
-    <div class="max-w-4xl w-full mx-auto text-center">
-        <!-- 错误代码 -->
-        <div class="relative mb-8">
-            <span class="text-[clamp(10rem,30vw,18rem)] font-bold text-primary/10 absolute left-1/2 -translate-x-1/2 -z-10">404</span>
-            <div class="flex flex-col items-center">
-                <div class="w-32 h-32 rounded-full bg-primary/10 flex items-center justify-center mb-6 animate-float">
-                    <i class="fa fa-compass text-6xl text-primary"></i>
-                </div>
-                <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-dark mb-4 text-shadow">Oops! You're lost</h1>
-                <p class="text-[clamp(1rem,2vw,1.25rem)] text-gray-600 max-w-2xl mx-auto mb-8">
-                    The page you're looking for doesn't exist. Let's get you back on track.
-                </p>
-                <a href="/" class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                    <i class="fa fa-home mr-2"></i> Return Home
-                </a>
-            </div>
+<body class="bg-gradient-to-br from-light to-accent min-h-screen overflow-x-hidden">
+    <!-- 漂浮爱心背景 -->
+    <div id="hearts-container" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <!-- 主内容区 -->
+    <main class="relative z-10 min-h-screen flex flex-col items-center justify-center p-4">
+        <!-- 视频背景 (桌面版) -->
+        <div class="fixed inset-0 z-0 hidden md:block">
+            <video autoplay muted loop class="absolute min-w-full min-h-full object-cover opacity-30">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-couple-walking-on-the-beach-4340-large.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-b from-secondary/30 to-primary/20"></div>
         </div>
 
-        <!-- 附加信息 -->
-        <div class="mt-16 bg-white rounded-xl shadow-lg p-6 max-w-md mx-auto border border-gray-100">
-            <h3 class="text-lg font-semibold mb-3 flex items-center justify-center">
-                <i class="fa fa-lightbulb-o text-secondary mr-2"></i> Need Help?
-            </h3>
-            <p class="text-gray-600 text-sm">
-                If you think this is a mistake, please contact our support team.
-            </p>
-            <div class="mt-4 flex justify-center space-x-4">
-                <a href="#" class="text-primary hover:text-primary/80 transition-colors">
-                    <i class="fa fa-envelope"></i> Email Support
-                </a>
-                <span class="text-gray-300">|</span>
-                <a href="#" class="text-primary hover:text-primary/80 transition-colors">
-                    <i class="fa fa-twitter"></i> Twitter Support
-                </a>
+        <!-- 移动版背景图 -->
+        <div class="fixed inset-0 z-0 md:hidden">
+            <img src="https://picsum.photos/id/1033/1920/1080" alt="浪漫背景图" class="absolute min-w-full min-h-full object-cover opacity-40">
+            <div class="absolute inset-0 bg-gradient-to-b from-secondary/30 to-primary/20"></div>
+        </div>
+
+        <!-- 页面内容 -->
+        <div class="max-w-4xl w-full mx-auto text-center relative z-10">
+            <!-- 标题部分 -->
+            <div class="mb-12 animate-fade-in opacity-0" style="animation-delay: 0.2s">
+                <h1 class="text-[clamp(2.5rem,6vw,4rem)] font-display font-bold text-dark mb-4 text-shadow-lg leading-tight">
+                    你愿意嫁给我吗？
+                </h1>
+                <p class="text-[clamp(1.2rem,3vw,1.5rem)] text-dark/80 max-w-2xl mx-auto italic">
+                    Will you spend the rest of your life with me?
+                </p>
+            </div>
+
+            <!-- 照片部分 -->
+            <div class="mb-16 animate-slide-up opacity-0 transform translate-y-10" style="animation-delay: 0.5s">
+                <div class="relative inline-block rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
+                    <img src="https://picsum.photos/id/1035/800/600" alt="我们的回忆" class="rounded-2xl max-w-full h-auto object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent rounded-2xl flex items-end">
+                        <div class="p-6 text-left">
+                            <h3 class="text-xl font-bold text-white mb-2">我们的故事</h3>
+                            <p class="text-white/90 text-sm md:text-base">从相遇的那一刻起，我就知道你是我今生的唯一</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 求婚信部分 -->
+            <div class="bg-white/80 backdrop-blur-md rounded-2xl p-6 md:p-8 shadow-xl mb-12 max-w-2xl mx-auto animate-slide-up opacity-0 transform translate-y-10" style="animation-delay: 0.8s">
+                <div class="text-left space-y-4">
+                    <p class="text-dark/90 text-lg leading-relaxed">亲爱的：</p>
+                    <p class="text-dark/90 text-lg leading-relaxed">
+                        从我们相遇的那一刻起，我的生命便因你而变得完整。
+                        你的笑容是我每天醒来的动力，你的陪伴是我最珍贵的礼物。
+                    </p>
+                    <p class="text-dark/90 text-lg leading-relaxed">
+                        今天，我想正式向你许下承诺：我愿与你携手走过余生，
+                        无论顺境还是逆境，无论健康还是疾病，我都会在你身边，爱你、珍惜你，直到永远。
+                    </p>
+                    <p class="text-dark/90 text-lg leading-relaxed mt-6">
+                        你愿意成为我的妻子，与我一起创造更多美好的回忆吗？
+                    </p>
+                </div>
+            </div>
+
+            <!-- 按钮部分 -->
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-16 animate-fade-in opacity-0" style="animation-delay: 1.2s">
+                <button id="yesBtn" class="px-8 py-4 bg-primary hover:bg-primary/90 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 text-lg">
+                    <i class="fa fa-heart mr-2"></i> 我愿意
+                </button>
+                <button id="noBtn" class="px-8 py-4 bg-white hover:bg-gray-100 text-primary border-2 border-primary font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 text-lg">
+                    <i class="fa fa-times mr-2"></i> 再考虑
+                </button>
+            </div>
+
+            <!-- 戒指动画 (初始隐藏) -->
+            <div id="ringContainer" class="hidden mb-10 animate-scale opacity-0">
+                <div class="relative w-48 h-48 mx-auto">
+                    <div class="absolute inset-0 bg-primary/10 rounded-full animate-pulse-slow"></div>
+                    <img src="https://picsum.photos/id/106/300/300" alt="求婚戒指" class="relative z-10 w-full h-full object-contain animate-float">
+                </div>
+            </div>
+
+            <!-- 确认消息 (初始隐藏) -->
+            <div id="confirmationMessage" class="hidden mb-12 animate-fade-in opacity-0">
+                <div class="bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-xl max-w-xl mx-auto">
+                    <h2 class="text-2xl font-bold text-primary mb-4">我们将永远在一起！</h2>
+                    <p class="text-dark/80 mb-6">感谢你接受我的求婚，我保证会用一生的时间爱你、珍惜你。</p>
+                    <div class="flex justify-center">
+                        <button id="shareBtn" class="px-6 py-3 bg-secondary hover:bg-secondary/90 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                            <i class="fa fa-share-alt mr-2"></i> 分享这份喜悦
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <!-- 页脚 -->
-    <footer class="mt-auto py-6 text-center text-gray-500 text-sm">
-        <p>&copy; 2025 Your Company. All rights reserved.</p>
+    <footer class="relative z-10 py-6 text-center text-dark/60 text-sm">
+        <p>用❤️制作 | 永远爱你</p>
     </footer>
 
     <script>
-        // 添加一些微交互效果
-        document.addEventListener('DOMContentLoaded', function() {
-            const compass = document.querySelector('.fa-compass');
-            let rotation = 0;
+        // 创建漂浮爱心背景
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const heartCount = 15;
             
-            setInterval(() => {
-                rotation += 90;
-                compass.style.transform = `rotate(${rotation}deg)`;
-                compass.style.transition = 'transform 0.5s ease';
-            }, 3000);
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                
+                // 随机位置和大小
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.top = `${Math.random() * 100}vh`;
+                heart.style.width = `${5 + Math.random() * 15}px`;
+                heart.style.height = `${5 + Math.random() * 15}px`;
+                
+                // 随机颜色
+                const hue = 350 + Math.random() * 20; // 保持在红色系
+                const saturation = 80 + Math.random() * 20;
+                const lightness = 60 + Math.random() * 20;
+                heart.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+                
+                // 随机动画延迟和持续时间
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                heart.style.animationDuration = `${5 + Math.random() * 10}s`;
+                
+                // 随机旋转
+                heart.style.transform = `rotate(${Math.random() * 360}deg) translate(0, 0)`;
+                
+                container.appendChild(heart);
+            }
+        }
+
+        // 显示戒指和确认消息
+        function showEngagement() {
+            const ringContainer = document.getElementById('ringContainer');
+            const confirmationMessage = document.getElementById('confirmationMessage');
+            
+            // 显示戒指
+            ringContainer.classList.remove('hidden');
+            setTimeout(() => {
+                ringContainer.classList.add('opacity-100');
+            }, 100);
+            
+            // 显示确认消息
+            setTimeout(() => {
+                confirmationMessage.classList.remove('hidden');
+                setTimeout(() => {
+                    confirmationMessage.classList.add('opacity-100');
+                }, 100);
+            }, 1500);
+        }
+
+        // 调皮的"不"按钮
+        function setupNaughtyButton() {
+            const noBtn = document.getElementById('noBtn');
+            
+            noBtn.addEventListener('mouseover', () => {
+                // 随机移动按钮位置
+                const maxX = window.innerWidth - noBtn.offsetWidth;
+                const maxY = window.innerHeight - noBtn.offsetHeight;
+                
+                const randomX = Math.random() * maxX;
+                const randomY = Math.random() * maxY;
+                
+                noBtn.style.position = 'fixed';
+                noBtn.style.left = `${randomX}px`;
+                noBtn.style.top = `${randomY}px`;
+                noBtn.style.zIndex = '1000';
+            });
+        }
+
+        // 分享功能
+        function setupShareButton() {
+            const shareBtn = document.getElementById('shareBtn');
+            
+            shareBtn.addEventListener('click', () => {
+                if (navigator.share) {
+                    navigator.share({
+                        title: '我们订婚啦！',
+                        text: '我刚刚向我的挚爱求婚成功了！',
+                        url: window.location.href
+                    })
+                    .catch(error => console.log('Error sharing:', error));
+                } else {
+                    alert('您的浏览器不支持直接分享功能，请手动分享链接。');
+                }
+            });
+        }
+
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', () => {
+            createHearts();
+            setupNaughtyButton();
+            setupShareButton();
+            
+            // 为"我愿意"按钮添加点击事件
+            const yesBtn = document.getElementById('yesBtn');
+            yesBtn.addEventListener('click', () => {
+                // 添加心跳动画
+                yesBtn.classList.add('animate-heartbeat');
+                
+                // 延迟显示戒指和确认消息
+                setTimeout(showEngagement, 1000);
+            });
+            
+            // 为所有动画元素添加可见性
+            setTimeout(() => {
+                document.querySelectorAll('.animate-fade-in, .animate-slide-up').forEach(el => {
+                    el.classList.add('opacity-100');
+                    el.classList.remove('translate-y-10');
+                });
+            }, 100);
         });
     </script>
 </body>
 </html>
-    
