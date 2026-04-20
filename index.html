@@ -3,323 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Marry Me? | 你愿意嫁给我吗？ </title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#E94057',
-                        secondary: '#8A2387',
-                        accent: '#FFC8DD',
-                        light: '#FFF0F3',
-                        dark: '#590D22'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        display: ['"Ma Shan Zheng"', 'cursive']
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'heartbeat': 'heartbeat 1.5s ease-in-out infinite',
-                        'fade-in': 'fadeIn 1s ease-in forwards',
-                        'slide-up': 'slideUp 0.8s ease-out forwards',
-                        'scale': 'scale 0.5s ease-out forwards'
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' }
-                        },
-                        heartbeat: {
-                            '0%, 100%': { transform: 'scale(1)' },
-                            '14%': { transform: 'scale(1.1)' },
-                            '28%': { transform: 'scale(1)' },
-                            '42%': { transform: 'scale(1.1)' },
-                            '70%': { transform: 'scale(1)' }
-                        },
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' }
-                        },
-                        slideUp: {
-                            '0%': { transform: 'translateY(20px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' }
-                        },
-                        scale: {
-                            '0%': { transform: 'scale(0.8)', opacity: '0' },
-                            '100%': { transform: 'scale(1)', opacity: '1' }
-                        }
-                    }
-                }
-            }
+    <title>浩秦 - 个人主页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
         }
-    </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .content-auto {
-                content-visibility: auto;
-            }
-            .text-shadow {
-                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            }
-            .text-shadow-lg {
-                text-shadow: 0 4px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
-            }
-            .bg-blur {
-                backdrop-filter: blur(8px);
-            }
-            .heart {
-                position: absolute;
-                width: 20px;
-                height: 20px;
-                background-color: #E94057;
-                transform: rotate(45deg);
-                animation: floatHeart 6s ease-in-out infinite;
-                opacity: 0.7;
-            }
-            .heart:before, .heart:after {
-                content: '';
-                width: 20px;
-                height: 20px;
-                background-color: #E94057;
-                border-radius: 50%;
-                position: absolute;
-            }
-            .heart:before {
-                top: -10px;
-                left: 0;
-            }
-            .heart:after {
-                top: 0;
-                left: -10px;
-            }
-            @keyframes floatHeart {
-                0% { transform: rotate(45deg) translateY(0) translateX(0); opacity: 0.7; }
-                50% { transform: rotate(45deg) translateY(-20px) translateX(10px); opacity: 0.9; }
-                100% { transform: rotate(45deg) translateY(0) translateX(0); opacity: 0.7; }
-            }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 25px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: #222;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+        }
+
+        .contact {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px 30px;
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        .contact a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: #1f2937;
+            margin: 35px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            color: #374151;
+            margin: 22px 0 10px;
+        }
+
+        ul {
+            padding-left: 22px;
+            color: #4b5563;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .link-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 10px 0 20px;
+        }
+
+        .link-group a {
+            padding: 6px 14px;
+            background: #eff6ff;
+            color: #2563eb;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .link-group a:hover {
+            background: #dbeafe;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.85rem;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gradient-to-br from-light to-accent min-h-screen overflow-x-hidden">
-    <!-- 漂浮爱心背景 -->
-    <div id="hearts-container" class="fixed inset-0 pointer-events-none z-0"></div>
-
-    <!-- 主内容区 -->
-    <main class="relative z-10 min-h-screen flex flex-col items-center justify-center p-4">
-        <!-- 视频背景 (桌面版) -->
-        <div class="fixed inset-0 z-0 hidden md:block">
-            <video autoplay muted loop class="absolute min-w-full min-h-full object-cover opacity-30">
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-couple-walking-on-the-beach-4340-large.mp4" type="video/mp4">
-            </video>
-            <div class="absolute inset-0 bg-gradient-to-b from-secondary/30 to-primary/20"></div>
-        </div>
-
-        <!-- 移动版背景图 -->
-        <div class="fixed inset-0 z-0 md:hidden">
-            <img src="https://picsum.photos/id/1033/1920/1080" alt="浪漫背景图" class="absolute min-w-full min-h-full object-cover opacity-40">
-            <div class="absolute inset-0 bg-gradient-to-b from-secondary/30 to-primary/20"></div>
-        </div>
-
-        <!-- 页面内容 -->
-        <div class="max-w-4xl w-full mx-auto text-center relative z-10">
-            <!-- 标题部分 -->
-            <div class="mb-12 animate-fade-in opacity-0" style="animation-delay: 0.2s">
-                <h1 class="text-[clamp(2.5rem,6vw,4rem)] font-display font-bold text-dark mb-4 text-shadow-lg leading-tight">
-                    你愿意嫁给我吗？
-                </h1>
-                <p class="text-[clamp(1.2rem,3vw,1.5rem)] text-dark/80 max-w-2xl mx-auto italic">
-                    Will you spend the rest of your life with me?
-                </p>
+<body>
+    <div class="container">
+        <header>
+            <h1>浩秦</h1>
+            <div class="subtitle">男 | 10年IT行业工作经验</div>
+            <div class="contact">
+                <div>Email：landvcn@qq.com</div>
+                <div>QQ：1358459281</div>
             </div>
 
-            <!-- 照片部分 -->
-            <div class="mb-16 animate-slide-up opacity-0 transform translate-y-10" style="animation-delay: 0.5s">
-                <div class="relative inline-block rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
-                    <img src="https://picsum.photos/id/1035/800/600" alt="我们的回忆" class="rounded-2xl max-w-full h-auto object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent rounded-2xl flex items-end">
-                        <div class="p-6 text-left">
-                            <h3 class="text-xl font-bold text-white mb-2">我们的故事</h3>
-                            <p class="text-white/90 text-sm md:text-base">从相遇的那一刻起，我就知道你是我今生的唯一</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="link-group">
+                <a href="https://landv.cn" target="_blank">个人博客</a>
+                <a href="https://landv.cnblogs.com" target="_blank">博客园</a>
+                <a href="https://github.com/landv" target="_blank">Github</a>
             </div>
+        </header>
 
-            <!-- 求婚信部分 -->
-            <div class="bg-white/80 backdrop-blur-md rounded-2xl p-6 md:p-8 shadow-xl mb-12 max-w-2xl mx-auto animate-slide-up opacity-0 transform translate-y-10" style="animation-delay: 0.8s">
-                <div class="text-left space-y-4">
-                    <p class="text-dark/90 text-lg leading-relaxed">亲爱的：</p>
-                    <p class="text-dark/90 text-lg leading-relaxed">
-                        从我们相遇的那一刻起，我的生命便因你而变得完整。
-                        你的笑容是我每天醒来的动力，你的陪伴是我最珍贵的礼物。
-                    </p>
-                    <p class="text-dark/90 text-lg leading-relaxed">
-                        今天，我想正式向你许下承诺：我愿与你携手走过余生，
-                        无论顺境还是逆境，无论健康还是疾病，我都会在你身边，爱你、珍惜你，直到永远。
-                    </p>
-                    <p class="text-dark/90 text-lg leading-relaxed mt-6">
-                        你愿意成为我的妻子，与我一起创造更多美好的回忆吗？
-                    </p>
-                </div>
-            </div>
+        <section>
+            <h2>技能清单</h2>
 
-            <!-- 按钮部分 -->
-            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-16 animate-fade-in opacity-0" style="animation-delay: 1.2s">
-                <button id="yesBtn" class="px-8 py-4 bg-primary hover:bg-primary/90 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 text-lg">
-                    <i class="fa fa-heart mr-2"></i> 我愿意
-                </button>
-                <button id="noBtn" class="px-8 py-4 bg-white hover:bg-gray-100 text-primary border-2 border-primary font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 text-lg">
-                    <i class="fa fa-times mr-2"></i> 再考虑
-                </button>
-            </div>
+            <h3>一、信息化管理</h3>
+            <ul>
+                <li>制定公司信息化建“三五规划”：根据公司战略、用户需求、业务和管理成熟度等因素，制定公司信息化建设的长期规划，明确信息化建设的目标和方向。</li>
+                <li>制定规章制度、规范和标准：负责组织制定公司信息化建设相关的需求管理、项目管理、知识管理等方面的规章制度、规范和标准，并监督执行，以确保信息化建设的顺利进行。</li>
+                <li>负责信息化建设的调研、规划、项目建设、落地与推行：根据公司信息化建设规划，负责信息化建设的调研、规划、项目建设、落地与推行等工作，确保信息化建设项目能够按时、按质完成。</li>
+                <li>与软件供应商的业务洽谈工作：负责与软件供应商进行业务洽谈，选择合适的软件产品和服务，达成合作协议，并监督供应商履行协议。</li>
+                <li>合理安排下属分工：根据公司各信息系统运行情况，合理安排下属分工，确保信息系统能够高效稳定地运行。</li>
+                <li>对接各子公司信息化建设各项工作：负责对接各子公司信息化建设各项工作，协调各个部门之间的信息流转和业务接口，促进信息化系统的整体优化，提高公司信息化管理水平。</li>
+                <li>信息系统实施、推广与培训工作：负责信息系统实施、推广和培训等工作，确保信息系统能够正常运行，并能够被广泛应用。同时还要负责员工的信息化技能培训，提高员工的信息化素养和技能水平。</li>
+            </ul>
 
-            <!-- 戒指动画 (初始隐藏) -->
-            <div id="ringContainer" class="hidden mb-10 animate-scale opacity-0">
-                <div class="relative w-48 h-48 mx-auto">
-                    <div class="absolute inset-0 bg-primary/10 rounded-full animate-pulse-slow"></div>
-                    <img src="https://picsum.photos/id/106/300/300" alt="求婚戒指" class="relative z-10 w-full h-full object-contain animate-float">
-                </div>
-            </div>
+            <h3>二、运维相关</h3>
+            <ul>
+                <li>应用系统的部署、维护、升级工作：负责应用系统在服务器上的部署、维护和升级，确保应用系统可以正常运行。需要熟悉应用系统的架构和配置文件的编写，并能够快速排查常见问题。</li>
+                <li>机房网络和办公室网络管理和调优：负责机房和办公室网络的规划、部署、维护和调优。需要熟悉网络设备的配置和管理，如路由器、交换机、防火墙等，并能够快速排查网络故障。</li>
+                <li>负责服务器集群的操作系统安装、升级、定制、部署与维护工作：运维人员需要对服务器集群的操作系统进行安装、升级、定制、部署和维护，确保服务器集群的稳定性和安全性。需要熟悉各种操作系统的安装和配置，如Linux、Windows等。</li>
+                <li>负责服务器集群的系统监控和自动化脚本的设计与部署：运维人员需要对服务器集群进行系统监控和管理，并能够设计和部署自动化脚本来减少手动操作，提高运维效率。需要熟悉各种系统监控工具和自动化脚本的编写，如Zabbix、Nagios等。</li>
+                <li>负责对服务器运维平台有针对性地持续调整和优化，提高操作效率，增强系统可用性：运维人员需要根据业务需求和系统情况，对服务器运维平台进行持续的调整和优化，以提高操作效率和系统可用性。需要熟悉各种运维平台和工具，如Ansible、Saltstack、Puppet等，并具备一定的脚本编程能力。</li>
+                <li>负责应用系统的故障应对，及就故障排查同业务及技术接口人的沟通工作：运维人员需要对应用系统的故障进行应对，并与业务和技术接口人进行沟通，快速解决问题。需要具备良好的沟通能力和故障排查能力，能够快速定位问题并解决。</li>
+                <li>精通 Linux 系统安装配置和系统参数优化设置，具备企业级大规模系统的运维：运维人员需要精通Linux系统的安装和配置，并能够对系统参数进行优化和调整，以提高系统性能和稳定性。需要具备大规模系统的运维经验和良好的架构设计能力。</li>
+            </ul>
 
-            <!-- 确认消息 (初始隐藏) -->
-            <div id="confirmationMessage" class="hidden mb-12 animate-fade-in opacity-0">
-                <div class="bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-xl max-w-xl mx-auto">
-                    <h2 class="text-2xl font-bold text-primary mb-4">我们将永远在一起！</h2>
-                    <p class="text-dark/80 mb-6">感谢你接受我的求婚，我保证会用一生的时间爱你、珍惜你。</p>
-                    <div class="flex justify-center">
-                        <button id="shareBtn" class="px-6 py-3 bg-secondary hover:bg-secondary/90 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                            <i class="fa fa-share-alt mr-2"></i> 分享这份喜悦
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+            <h3>三、Golang 开发</h3>
+            <ul>
+                <li>具备良好的基本功，熟悉使用基本的数据结构和算法：熟悉掌握常用数据结构，如数组、链表、栈、队列、哈希表等；同时了解基本的算法，如排序、查找、递归等。</li>
+                <li>熟悉掌握Golang常用的框架，如gin、beego深入了解框架提供的特性及其实现原理细节：掌握Gin中间件原理、路由匹配规则、Context对象，Beego的MVC架构、ORM框架、Session管理等。</li>
+                <li>熟悉掌握一种以上非关系型数据库，如mongodb、redis,理解其使用场景及限制：熟悉MongoDB、Redis，理解缓存、海量半结构化数据存储等业务场景。</li>
+                <li>熟练掌握MySQL数据库，具备MySQL索引优化、查询优化的能力：熟练表结构设计、索引优化、SQL语句调优。</li>
+                <li>Linux服务端开发，调试经验，熟悉网络编程、TCP、HTTP：精通Linux服务端环境，熟悉网络通信协议与服务端开发调试。</li>
+                <li>熟悉微服务，掌握一种以上服务框架和消息中间件，了解其实现原理：了解微服务架构、服务注册发现、负载均衡、容错、分布式事务，熟悉Kafka等消息中间件。</li>
+            </ul>
+        </section>
 
-    <!-- 页脚 -->
-    <footer class="relative z-10 py-6 text-center text-dark/60 text-sm">
-        <p>用❤️制作 | 永远爱你</p>
-    </footer>
-
-    <script>
-        // 创建漂浮爱心背景
-        function createHearts() {
-            const container = document.getElementById('hearts-container');
-            const heartCount = 15;
-            
-            for (let i = 0; i < heartCount; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-                
-                // 随机位置和大小
-                heart.style.left = `${Math.random() * 100}vw`;
-                heart.style.top = `${Math.random() * 100}vh`;
-                heart.style.width = `${5 + Math.random() * 15}px`;
-                heart.style.height = `${5 + Math.random() * 15}px`;
-                
-                // 随机颜色
-                const hue = 350 + Math.random() * 20; // 保持在红色系
-                const saturation = 80 + Math.random() * 20;
-                const lightness = 60 + Math.random() * 20;
-                heart.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-                
-                // 随机动画延迟和持续时间
-                heart.style.animationDelay = `${Math.random() * 5}s`;
-                heart.style.animationDuration = `${5 + Math.random() * 10}s`;
-                
-                // 随机旋转
-                heart.style.transform = `rotate(${Math.random() * 360}deg) translate(0, 0)`;
-                
-                container.appendChild(heart);
-            }
-        }
-
-        // 显示戒指和确认消息
-        function showEngagement() {
-            const ringContainer = document.getElementById('ringContainer');
-            const confirmationMessage = document.getElementById('confirmationMessage');
-            
-            // 显示戒指
-            ringContainer.classList.remove('hidden');
-            setTimeout(() => {
-                ringContainer.classList.add('opacity-100');
-            }, 100);
-            
-            // 显示确认消息
-            setTimeout(() => {
-                confirmationMessage.classList.remove('hidden');
-                setTimeout(() => {
-                    confirmationMessage.classList.add('opacity-100');
-                }, 100);
-            }, 1500);
-        }
-
-        // 调皮的"不"按钮
-        function setupNaughtyButton() {
-            const noBtn = document.getElementById('noBtn');
-            
-            noBtn.addEventListener('mouseover', () => {
-                // 随机移动按钮位置
-                const maxX = window.innerWidth - noBtn.offsetWidth;
-                const maxY = window.innerHeight - noBtn.offsetHeight;
-                
-                const randomX = Math.random() * maxX;
-                const randomY = Math.random() * maxY;
-                
-                noBtn.style.position = 'fixed';
-                noBtn.style.left = `${randomX}px`;
-                noBtn.style.top = `${randomY}px`;
-                noBtn.style.zIndex = '1000';
-            });
-        }
-
-        // 分享功能
-        function setupShareButton() {
-            const shareBtn = document.getElementById('shareBtn');
-            
-            shareBtn.addEventListener('click', () => {
-                if (navigator.share) {
-                    navigator.share({
-                        title: '我们订婚啦！',
-                        text: '我刚刚向我的挚爱求婚成功了！',
-                        url: window.location.href
-                    })
-                    .catch(error => console.log('Error sharing:', error));
-                } else {
-                    alert('您的浏览器不支持直接分享功能，请手动分享链接。');
-                }
-            });
-        }
-
-        // 初始化页面
-        document.addEventListener('DOMContentLoaded', () => {
-            createHearts();
-            setupNaughtyButton();
-            setupShareButton();
-            
-            // 为"我愿意"按钮添加点击事件
-            const yesBtn = document.getElementById('yesBtn');
-            yesBtn.addEventListener('click', () => {
-                // 添加心跳动画
-                yesBtn.classList.add('animate-heartbeat');
-                
-                // 延迟显示戒指和确认消息
-                setTimeout(showEngagement, 1000);
-            });
-            
-            // 为所有动画元素添加可见性
-            setTimeout(() => {
-                document.querySelectorAll('.animate-fade-in, .animate-slide-up').forEach(el => {
-                    el.classList.add('opacity-100');
-                    el.classList.remove('translate-y-10');
-                });
-            }, 100);
-        });
-    </script>
+        <footer>
+            © landv | 个人静态展示主页
+        </footer>
+    </div>
 </body>
 </html>
