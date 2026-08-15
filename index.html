@@ -4,7 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>浩秦 - 个人主页</title>
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (t === 'dark' || (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            } catch (e) { }
+        })();
+    </script>
     <style>
+        :root {
+            --bg: #f5f7fa;
+            --card-bg: #ffffff;
+            --text: #333333;
+            --text-soft: #4b5563;
+            --heading: #1f2937;
+            --heading-soft: #374151;
+            --muted: #666666;
+            --border: #e2e8f0;
+            --border-light: #eee;
+            --accent: #2563eb;
+            --chip-bg: #eff6ff;
+            --chip-bg-hover: #dbeafe;
+            --table-border: #e5e7eb;
+            --table-head-bg: #f3f4f6;
+            --table-row-alt: #fafafa;
+            --tech-bg: #f1f5f9;
+            --tech-border: #e2e8f0;
+            --tech-text: #334155;
+            --tip-bg: #fffbeb;
+            --tip-border: #fde68a;
+            --tip-text: #92400e;
+            --badge-green-bg: #dcfce7;
+            --badge-green-text: #166534;
+            --badge-blue-bg: #dbeafe;
+            --badge-blue-text: #1e40af;
+            --footer-text: #9ca3af;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --fab-bg: #2563eb;
+            --fab-text: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #e2e8f0;
+            --text-soft: #94a3b8;
+            --heading: #f1f5f9;
+            --heading-soft: #cbd5e1;
+            --muted: #94a3b8;
+            --border: #334155;
+            --border-light: #334155;
+            --accent: #60a5fa;
+            --chip-bg: #1e3a5f;
+            --chip-bg-hover: #2c4a75;
+            --table-border: #334155;
+            --table-head-bg: #263449;
+            --table-row-alt: #243145;
+            --tech-bg: #243145;
+            --tech-border: #334155;
+            --tech-text: #cbd5e1;
+            --tip-bg: #3a2f1a;
+            --tip-border: #7c5e10;
+            --tip-text: #fcd34d;
+            --badge-green-bg: #14532d;
+            --badge-green-text: #86efac;
+            --badge-blue-bg: #1e3a8a;
+            --badge-blue-text: #93c5fd;
+            --footer-text: #64748b;
+            --shadow: rgba(0, 0, 0, 0.4);
+            --fab-bg: #60a5fa;
+            --fab-text: #0f172a;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,36 +87,38 @@
         }
 
         body {
-            background-color: #f5f7fa;
-            color: #333;
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.7;
             padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
-            background: #fff;
+            background: var(--card-bg);
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 20px var(--shadow);
             padding: 40px;
+            transition: background-color 0.3s;
         }
 
         header {
             text-align: center;
             margin-bottom: 40px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border-light);
             padding-bottom: 25px;
         }
 
         h1 {
             font-size: 2.2rem;
-            color: #222;
+            color: var(--heading);
             margin-bottom: 8px;
         }
 
         .subtitle {
-            color: #666;
+            color: var(--muted);
             font-size: 1.05rem;
             margin-bottom: 20px;
         }
@@ -53,11 +129,11 @@
             justify-content: center;
             gap: 15px 30px;
             font-size: 0.95rem;
-            color: #444;
+            color: var(--text-soft);
         }
 
         .contact a {
-            color: #2563eb;
+            color: var(--accent);
             text-decoration: none;
         }
 
@@ -67,21 +143,21 @@
 
         h2 {
             font-size: 1.4rem;
-            color: #1f2937;
+            color: var(--heading);
             margin: 35px 0 15px;
             padding-bottom: 8px;
-            border-bottom: 2px solid #e2e8f0;
+            border-bottom: 2px solid var(--border);
         }
 
         h3 {
             font-size: 1.15rem;
-            color: #374151;
+            color: var(--heading-soft);
             margin: 22px 0 10px;
         }
 
         ul {
             padding-left: 22px;
-            color: #4b5563;
+            color: var(--text-soft);
         }
 
         li {
@@ -97,30 +173,230 @@
 
         .link-group a {
             padding: 6px 14px;
-            background: #eff6ff;
-            color: #2563eb;
+            background: var(--chip-bg);
+            color: var(--accent);
             border-radius: 6px;
             text-decoration: none;
             font-size: 0.9rem;
         }
 
         .link-group a:hover {
-            background: #dbeafe;
+            background: var(--chip-bg-hover);
+        }
+
+        .en {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge-green {
+            background: var(--badge-green-bg);
+            color: var(--badge-green-text);
+        }
+
+        .badge-blue {
+            background: var(--badge-blue-bg);
+            color: var(--badge-blue-text);
+        }
+
+        section p {
+            color: var(--text-soft);
+            margin-bottom: 12px;
+        }
+
+        section p.tip {
+            background: var(--tip-bg);
+            border: 1px solid var(--tip-border);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: var(--tip-text);
+            margin-top: 14px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0 20px;
+            font-size: 0.92rem;
+            color: var(--text-soft);
+        }
+
+        table th, table td {
+            border: 1px solid var(--table-border);
+            padding: 10px 14px;
+            text-align: left;
+        }
+
+        table th {
+            background: var(--table-head-bg);
+            color: var(--heading);
+            font-weight: 600;
+        }
+
+        table tr:nth-child(even) {
+            background: var(--table-row-alt);
+        }
+
+        table a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        table a:hover {
+            text-decoration: underline;
+        }
+
+        .steps {
+            padding-left: 22px;
+            color: var(--text-soft);
+        }
+
+        .steps li {
+            margin-bottom: 10px;
+        }
+
+        .tech-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 8px 0 18px;
+        }
+
+        .tech {
+            padding: 5px 12px;
+            background: var(--tech-bg);
+            border: 1px solid var(--tech-border);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--tech-text);
         }
 
         footer {
             margin-top: 50px;
             text-align: center;
-            color: #9ca3af;
+            color: var(--footer-text);
             font-size: 0.85rem;
+        }
+
+        /* ===== 悬浮按钮 ===== */
+        .fab {
+            position: fixed;
+            right: 20px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--fab-text);
+            background: var(--fab-bg);
+            box-shadow: 0 4px 12px var(--shadow);
+            z-index: 999;
+            transition: transform 0.2s, opacity 0.3s, background-color 0.3s, color 0.3s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .fab:hover {
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        .fab:active {
+            transform: scale(0.95);
+        }
+
+        #themeToggle {
+            bottom: 76px;
+        }
+
+        #backToTop {
+            bottom: 20px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #backToTop.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ===== 手机端适配 ===== */
+        @media (max-width: 640px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px 16px;
+                border-radius: 8px;
+            }
+
+            h1 {
+                font-size: 1.55rem;
+            }
+
+            .subtitle {
+                font-size: 0.95rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+                margin: 28px 0 12px;
+            }
+
+            table {
+                font-size: 0.84rem;
+            }
+
+            table th, table td {
+                padding: 8px 10px;
+            }
+
+            .fab {
+                width: 42px;
+                height: 42px;
+                font-size: 18px;
+                right: 14px;
+            }
+
+            #themeToggle {
+                bottom: 66px;
+            }
+
+            #backToTop {
+                bottom: 14px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>浩秦</h1>
-            <div class="subtitle">男 | 10年IT行业工作经验</div>
+            <h1>浩秦 <span class="en">(landv)</span></h1>
+            <div class="subtitle">🚀 独立开发程序员 · 全栈开发 · 信息化建设 · 系统运维<br/>💪 15 年企业级经验 · 高效沟通 · 按时交付 · 售后无忧</div>
+            <div class="badges">
+                <span class="badge badge-green">✅ 可接单中</span>
+                <span class="badge badge-blue">⏱ 24h 内响应</span>
+            </div>
             <div class="contact">
                 <div>Email：landvcn@qq.com</div>
                 <div>QQ：1358459281</div>
@@ -134,46 +410,178 @@
         </header>
 
         <section>
-            <h2>技能清单</h2>
-
-            <h3>一、信息化管理</h3>
+            <h2>👨‍💻 关于我</h2>
+            <p>你好！我是 <strong>浩秦</strong>，一名拥有 <strong>15 年</strong>经验的 <strong>独立开发程序员</strong>。</p>
+            <p>我曾负责企业 <strong>信息化建设、大规模系统运维与 Golang 服务端开发</strong>，熟悉从 <strong>需求分析 → 方案设计 → 开发落地 → 部署运维</strong> 的完整流程。现在我以独立开发者的身份，专注为中小企业和个人客户提供 <strong>专业、稳定、可长期维护</strong> 的技术服务。</p>
+            <h3>为什么选择我？</h3>
             <ul>
-                <li>制定公司信息化建“三五规划”：根据公司战略、用户需求、业务和管理成熟度等因素，制定公司信息化建设的长期规划，明确信息化建设的目标和方向。</li>
-                <li>制定规章制度、规范和标准：负责组织制定公司信息化建设相关的需求管理、项目管理、知识管理等方面的规章制度、规范和标准，并监督执行，以确保信息化建设的顺利进行。</li>
-                <li>负责信息化建设的调研、规划、项目建设、落地与推行：根据公司信息化建设规划，负责信息化建设的调研、规划、项目建设、落地与推行等工作，确保信息化建设项目能够按时、按质完成。</li>
-                <li>与软件供应商的业务洽谈工作：负责与软件供应商进行业务洽谈，选择合适的软件产品和服务，达成合作协议，并监督供应商履行协议。</li>
-                <li>合理安排下属分工：根据公司各信息系统运行情况，合理安排下属分工，确保信息系统能够高效稳定地运行。</li>
-                <li>对接各子公司信息化建设各项工作：负责对接各子公司信息化建设各项工作，协调各个部门之间的信息流转和业务接口，促进信息化系统的整体优化，提高公司信息化管理水平。</li>
-                <li>信息系统实施、推广与培训工作：负责信息系统实施、推广和培训等工作，确保信息系统能够正常运行，并能够被广泛应用。同时还要负责员工的信息化技能培训，提高员工的信息化素养和技能水平。</li>
+                <li>✅ 15 年一线经验，方案靠谱、少走弯路</li>
+                <li>✅ 深耕制造 / 打印 / 标签自动化行业，熟悉设备对接与产线系统</li>
+                <li>✅ 全栈能力，一个人搞定从开发到运维</li>
+                <li>✅ 交付准时，代码规范，长期可维护</li>
+                <li>✅ 售后响应快，合作放心</li>
             </ul>
+        </section>
 
-            <h3>二、运维相关</h3>
-            <ul>
-                <li>应用系统的部署、维护、升级工作：负责应用系统在服务器上的部署、维护和升级，确保应用系统可以正常运行。需要熟悉应用系统的架构和配置文件的编写，并能够快速排查常见问题。</li>
-                <li>机房网络和办公室网络管理和调优：负责机房和办公室网络的规划、部署、维护和调优。需要熟悉网络设备的配置和管理，如路由器、交换机、防火墙等，并能够快速排查网络故障。</li>
-                <li>负责服务器集群的操作系统安装、升级、定制、部署与维护工作：运维人员需要对服务器集群的操作系统进行安装、升级、定制、部署和维护，确保服务器集群的稳定性和安全性。需要熟悉各种操作系统的安装和配置，如Linux、Windows等。</li>
-                <li>负责服务器集群的系统监控和自动化脚本的设计与部署：运维人员需要对服务器集群进行系统监控和管理，并能够设计和部署自动化脚本来减少手动操作，提高运维效率。需要熟悉各种系统监控工具和自动化脚本的编写，如Zabbix、Nagios等。</li>
-                <li>负责对服务器运维平台有针对性地持续调整和优化，提高操作效率，增强系统可用性：运维人员需要根据业务需求和系统情况，对服务器运维平台进行持续的调整和优化，以提高操作效率和系统可用性。需要熟悉各种运维平台和工具，如Ansible、Saltstack、Puppet等，并具备一定的脚本编程能力。</li>
-                <li>负责应用系统的故障应对，及就故障排查同业务及技术接口人的沟通工作：运维人员需要对应用系统的故障进行应对，并与业务和技术接口人进行沟通，快速解决问题。需要具备良好的沟通能力和故障排查能力，能够快速定位问题并解决。</li>
-                <li>精通 Linux 系统安装配置和系统参数优化设置，具备企业级大规模系统的运维：运维人员需要精通Linux系统的安装和配置，并能够对系统参数进行优化和调整，以提高系统性能和稳定性。需要具备大规模系统的运维经验和良好的架构设计能力。</li>
-            </ul>
+        <section>
+            <h2>💼 我能为你做什么（可接单）</h2>
+            <table>
+                <thead>
+                    <tr><th>服务项目</th><th>说明</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>🖥️ Web 应用 / 系统开发</td><td>企业官网、管理后台、SaaS 平台、API 接口</td></tr>
+                    <tr><td>⚙️ Golang 后端开发</td><td>Gin / Beego 框架、微服务、高并发高性能接口</td></tr>
+                    <tr><td>🗄️ 数据库设计 &amp; 优化</td><td>MySQL 索引/慢查询优化、MongoDB、Redis 缓存方案</td></tr>
+                    <tr><td>☁️ 服务器部署 &amp; 运维</td><td>Linux 集群部署、Zabbix 监控、Ansible 自动化运维</td></tr>
+                    <tr><td>🏢 信息化建设咨询</td><td>信息化规划、需求管理、系统选型、项目落地推行</td></tr>
+                    <tr><td>🐛 爬虫 / 数据采集</td><td>网页爬虫、数据抓取、内容聚合、API 对接</td></tr>
+                    <tr><td>🔧 系统维护 &amp; 救急</td><td>系统巡检、故障排查、性能调优、旧系统改造升级</td></tr>
+                </tbody>
+            </table>
+            <p class="tip">💡 有想法不知道怎么落地？告诉我你的需求，我免费帮你出方案和报价。</p>
+        </section>
 
-            <h3>三、Golang 开发</h3>
+        <section>
+            <h2>🤝 如何合作</h2>
+            <ol class="steps">
+                <li><strong>📞 需求沟通</strong> — 告诉我你的需求，免费评估可行性与初步方案</li>
+                <li><strong>📋 方案 &amp; 报价</strong> — 确认技术方案、开发周期与报价</li>
+                <li><strong>💻 开发 &amp; 交付</strong> — 按里程碑推进，及时同步进度</li>
+                <li><strong>🚀 部署 &amp; 培训</strong> — 上线部署、使用培训、交付文档</li>
+                <li><strong>🔧 售后维护</strong> — 稳定期技术支持与持续优化</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>🛠️ 技术栈</h2>
+
+            <h3>💻 开发语言</h3>
+            <div class="tech-group">
+                <span class="tech">Go</span><span class="tech">Java</span><span class="tech">Python</span><span class="tech">JavaScript</span><span class="tech">TypeScript</span><span class="tech">Node.js</span><span class="tech">PHP</span><span class="tech">C++</span><span class="tech">C#</span><span class="tech">VB（VB6 / VB.NET）</span><span class="tech">HTML5</span><span class="tech">CSS3</span>
+            </div>
+
+            <h3>🧩 框架 &amp; 架构</h3>
+            <div class="tech-group">
+                <span class="tech">Gin</span><span class="tech">Beego</span><span class="tech">Spring Boot</span><span class="tech">Django</span><span class="tech">Flask</span><span class="tech">Express</span><span class="tech">Laravel</span><span class="tech">.NET</span><span class="tech">Vue.js</span><span class="tech">React</span><span class="tech">微服务架构</span>
+            </div>
+
+            <h3>🗄️ 数据库</h3>
+            <div class="tech-group">
+                <span class="tech">MySQL</span><span class="tech">PostgreSQL</span><span class="tech">MongoDB</span><span class="tech">Redis</span><span class="tech">SQLite</span><span class="tech">Oracle</span><span class="tech">SQL Server</span><span class="tech">Elasticsearch</span>
+            </div>
+
+            <h3>📨 消息中间件 &amp; 缓存</h3>
+            <div class="tech-group">
+                <span class="tech">Kafka</span><span class="tech">RabbitMQ</span><span class="tech">RocketMQ</span><span class="tech">Memcached</span>
+            </div>
+
+            <h3>☁️ 运维 &amp; 容器 &amp; 云</h3>
+            <div class="tech-group">
+                <span class="tech">Linux</span><span class="tech">Docker</span><span class="tech">Kubernetes</span><span class="tech">Nginx</span><span class="tech">Ansible</span><span class="tech">Saltstack</span><span class="tech">Zabbix</span><span class="tech">Prometheus</span><span class="tech">Grafana</span><span class="tech">Jenkins</span><span class="tech">GitHub Actions</span><span class="tech">CI/CD</span><span class="tech">Shell</span><span class="tech">Git</span><span class="tech">AWS</span><span class="tech">阿里云</span><span class="tech">腾讯云</span>
+            </div>
+
+            <h3>🎯 核心能力</h3>
             <ul>
-                <li>具备良好的基本功，熟悉使用基本的数据结构和算法：熟悉掌握常用数据结构，如数组、链表、栈、队列、哈希表等；同时了解基本的算法，如排序、查找、递归等。</li>
-                <li>熟悉掌握Golang常用的框架，如gin、beego深入了解框架提供的特性及其实现原理细节：掌握Gin中间件原理、路由匹配规则、Context对象，Beego的MVC架构、ORM框架、Session管理等。</li>
-                <li>熟悉掌握一种以上非关系型数据库，如mongodb、redis,理解其使用场景及限制：熟悉MongoDB、Redis，理解缓存、海量半结构化数据存储等业务场景。</li>
-                <li>熟练掌握MySQL数据库，具备MySQL索引优化、查询优化的能力：熟练表结构设计、索引优化、SQL语句调优。</li>
-                <li>Linux服务端开发，调试经验，熟悉网络编程、TCP、HTTP：精通Linux服务端环境，熟悉网络通信协议与服务端开发调试。</li>
-                <li>熟悉微服务，掌握一种以上服务框架和消息中间件，了解其实现原理：了解微服务架构、服务注册发现、负载均衡、容错、分布式事务，熟悉Kafka等消息中间件。</li>
+                <li><strong>后端开发：</strong>Go / Java / Python / Node.js，Gin / Beego / Spring Boot 等框架，微服务与分布式架构</li>
+                <li><strong>桌面 &amp; 工业开发：</strong>C# / VB（VB6 / VB.NET）、Win32 / WinForms / WPF，打印 / RFID / 条码 / 设备对接</li>
+                <li><strong>前端开发：</strong>Vue / React、HTML / CSS / JavaScript / TypeScript、响应式与移动端适配</li>
+                <li><strong>数据库：</strong>MySQL（索引 / 查询优化）、PostgreSQL、MongoDB、Redis（高并发缓存）、Elasticsearch 搜索</li>
+                <li><strong>消息 &amp; 缓存：</strong>Kafka / RabbitMQ / RocketMQ 消息中间件、Redis / Memcached 缓存方案</li>
+                <li><strong>运维 &amp; 云：</strong>Linux 系统调优、Docker / Kubernetes、Zabbix / Prometheus / Grafana 监控、Ansible / Saltstack 自动化、Nginx、CI/CD 流水线</li>
+                <li><strong>网络：</strong>TCP / HTTP / WebSocket 网络编程、路由器 / 交换机 / 防火墙配置与排障</li>
+                <li><strong>信息化管理：</strong>信息化规划、需求管理、项目管理、系统选型与落地推行</li>
             </ul>
+        </section>
+
+        <section>
+            <h2>📌 项目案例</h2>
+            <p>以下为部分公开项目与企业落地项目（企业项目多为私有仓库），欢迎沟通了解细节。</p>
+
+            <h3>🌐 开源项目</h3>
+            <table>
+                <thead>
+                    <tr><th>项目</th><th>简介</th><th>技术栈</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><a href="https://github.com/landv/kuwo-cli" target="_blank">kuwo-cli</a></td><td>酷我音乐命令行下载工具，Go 编写，零第三方依赖（仅标准库）</td><td>Go</td></tr>
+                    <tr><td><a href="https://github.com/landv/SleepBlockTool" target="_blank">SleepBlockTool</a></td><td>Windows 桌面小工具：查看并一键结束阻止系统休眠/睡眠的进程</td><td>C++ / Win32</td></tr>
+                    <tr><td><a href="https://github.com/landv/xwlb" target="_blank">xwlb</a></td><td>CCTV《新闻联播》爬虫工具（Node.js 实现）</td><td>Node.js</td></tr>
+                </tbody>
+            </table>
+
+            <h3>🏭 企业 / 工业项目（私有）</h3>
+            <p>以下为已在企业实际落地的项目，涉及制造打印、标签与自动化控制。均为私有仓库，细节可私聊了解。</p>
+            <table>
+                <thead>
+                    <tr><th>项目</th><th>简介</th><th>技术栈</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>gyyPrint</td><td>企业打印管理系统</td><td>C# / .NET</td></tr>
+                    <tr><td>gyyPrint2</td><td>企业打印管理系统（迭代版）</td><td>C# / .NET</td></tr>
+                    <tr><td>CefFlashBrowser_MultiTab</td><td>基于 CEF（Chromium）内核的多标签浏览器应用</td><td>C++ / CEF</td></tr>
+                    <tr><td>Mes_tcp_print</td><td>MES 系统 TCP 协议打印服务</td><td>C# / Socket</td></tr>
+                    <tr><td>GREELabelingMachineAutomation</td><td>贴标机自动化控制系统</td><td>C# / PLC</td></tr>
+                    <tr><td>GREELabelingMachineAutomation2</td><td>贴标机自动化控制系统（迭代版）</td><td>C# / PLC</td></tr>
+                    <tr><td>BarTenderPrint</td><td>BarTender 标签打印集成</td><td>VB6</td></tr>
+                    <tr><td>BarTenderPrintV2</td><td>BarTender 标签打印集成（迭代版）</td><td>VB6</td></tr>
+                    <tr><td>RFID_label_print</td><td>RFID 标签打印系统</td><td>C# / .NET</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>📬 联系我 · 获取报价</h2>
+            <p>欢迎咨询合作，<strong>24 小时内回复</strong>！</p>
+            <table>
+                <tbody>
+                    <tr><td>📧 Email</td><td><a href="mailto:landvcn@qq.com">landvcn@qq.com</a></td></tr>
+                    <tr><td>💬 QQ</td><td>1358459281</td></tr>
+                    <tr><td>🌐 GitHub</td><td><a href="https://github.com/landv" target="_blank">https://github.com/landv</a></td></tr>
+                    <tr><td>📝 个人博客</td><td><a href="https://landv.cn" target="_blank">https://landv.cn</a></td></tr>
+                    <tr><td>📖 博客园</td><td><a href="https://landv.cnblogs.com" target="_blank">https://landv.cnblogs.com</a></td></tr>
+                </tbody>
+            </table>
+            <p class="tip">💼 有开发、运维或信息化建设需求？<strong>直接联系我</strong>，免费获取初步方案与报价。</p>
         </section>
 
     <footer>
         © landv | 个人静态展示主页 | 
-        <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#9ca3af;text-decoration:none;">冀ICP备16002782号-3</a> | 
-        <a href="https://beian.mps.gov.cn/" target="_blank" style="color:#9ca3af;text-decoration:none;">冀公网安备13060702000183号</a>
+        <a href="https://beian.miit.gov.cn/" target="_blank" style="color:var(--footer-text);text-decoration:none;">冀ICP备16002782号-3</a> | 
+        <a href="https://beian.mps.gov.cn/" target="_blank" style="color:var(--footer-text);text-decoration:none;">冀公网安备13060702000183号</a>
     </footer>
     </div>
+
+    <button id="backToTop" class="fab" title="回到顶部" aria-label="回到顶部">↑</button>
+    <button id="themeToggle" class="fab" title="切换主题" aria-label="切换主题">🌙</button>
+
+    <script>
+        // 主题切换（本地持久化）
+        var themeToggle = document.getElementById('themeToggle');
+        var backToTop = document.getElementById('backToTop');
+
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+            themeToggle.title = theme === 'dark' ? '切换到亮色模式' : '切换到暗色模式';
+        }
+        applyTheme(localStorage.getItem('theme') || 'light');
+
+        themeToggle.addEventListener('click', function () {
+            var current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+            var next = current === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', next);
+            applyTheme(next);
+        });
+
+        // 回到顶部
+        window.addEventListener('scroll', function () {
+            backToTop.classList.toggle('show', window.scrollY > 400);
+        }, { passive: true });
+
+        backToTop.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
